@@ -3,6 +3,7 @@ export class Workout {
     constructor(routine, status) {
         this.currentExercise = 0;
         this.selectedExercise = 0;
+        this.currentCircuitRound = 0;
         const now = new Date();
         const date = `${now.getMonth() >= 10 ? now.getMonth() : '0' + now.getMonth()}-${now.getDate() >= 10 ? now.getDate() : '0' + now.getDate()}-${now.getFullYear()}`;
         this.name = routine.name + ' ' + date,
@@ -32,7 +33,7 @@ export class Workout {
                 }
                 exercise.currentSet = 0;
                 exercise.sets = [];
-                for (let i = 0; i < routineExercise.sets; i++) {
+                for (let i = 0; i < (routine.isCircuit ? routine.circuitRounds : routineExercise.sets); i++) {
                     if (!routineExercise.preset.isBilateral) {
                         exercise.sets.push(new WorkoutSet());
                     }

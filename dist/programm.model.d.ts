@@ -1,6 +1,7 @@
 export declare class Programm {
     id: string;
     name: string;
+    description: string;
     thumbnailUrl: string;
     sections: Section[];
 }

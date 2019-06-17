@@ -11,5 +11,4 @@ export { Tutor } from './tutor.model';
 import { WorkoutExercise, WorkoutSet } from './workout-exercise.model';
 import WorkoutTimer from './workout-timer';
 import { Workout } from './workout.model';
-import WorkoutPlayer, { ExerciseState } from './workout.player';
-export { CategorieItem, ContentItem, Routine, Exercise, NewsItem, Preset, Programm, RoutineExercise, RoutineStatus, WorkoutExercise, WorkoutTimer, Workout, WorkoutPlayer, WorkoutSet, Timings, ExerciseState, Section, Components };
+export { CategorieItem, ContentItem, Routine, Exercise, NewsItem, Preset, Programm, RoutineExercise, RoutineStatus, WorkoutExercise, WorkoutTimer, Workout, WorkoutSet, Timings, Section, Components };

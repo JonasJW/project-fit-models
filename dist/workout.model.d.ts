@@ -4,6 +4,8 @@ import { RoutineStatus } from "./routine-status.model";
 export declare class Workout {
     name: string;
     id: string;
+    duration: string;
+    difficulty: number;
     isCircuit: boolean;
     isTest: boolean;
     circuitRounds: number;
@@ -15,7 +17,7 @@ export declare class Workout {
     exercises: WorkoutExercise[];
     currentExercise: number;
     selectedExercise: number;
-    currentCircuitRound: any;
+    currentCircuitRound: number;
     lastWorkout: Workout;
     status: RoutineStatus;
     constructor(routine: Routine, status: RoutineStatus);
