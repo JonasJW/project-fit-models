@@ -2,6 +2,8 @@ import WorkoutTimer from "./workout-timer";
 import {WorkoutExercise} from "./workout-exercise.model";
 import {Workout} from "./workout.model";
 
+// ! Depricated // Use player in project-fit-nuxt/helper
+
 export enum ExerciseState {
     REST = 'Rest',
     HOLDDOWN = 'Hold Down',

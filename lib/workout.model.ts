@@ -7,7 +7,8 @@ import { RoutineExercise } from "./routine-exercise.model";
 export class Workout {
     name: string;
     id: string;
-    
+    duration: string;
+    difficulty: number;
     isCircuit: boolean;
     isTest: boolean;
     circuitRounds: number;
@@ -24,7 +25,7 @@ export class Workout {
     exercises: WorkoutExercise[];
     currentExercise = 0;
     selectedExercise = 0;
-    currentCircuitRound;
+    currentCircuitRound = 0;
     lastWorkout: Workout;
     status: RoutineStatus;
 
@@ -60,7 +61,7 @@ export class Workout {
                 }
                 exercise.currentSet = 0;
                 exercise.sets = [];
-                for (let i = 0; i < routineExercise.sets; i++) {
+                for (let i = 0; i < (routine.isCircuit ? routine.circuitRounds : routineExercise.sets); i++) {
                     if (!routineExercise.preset.isBilateral) {
                         exercise.sets.push(new WorkoutSet());
                     } else {

@@ -11,7 +11,7 @@ export { Tutor } from './tutor.model';
 import { WorkoutExercise, WorkoutSet } from './workout-exercise.model';
 import WorkoutTimer from './workout-timer';
 import { Workout } from './workout.model';
-import WorkoutPlayer, { ExerciseState } from './workout.player';
+// import WorkoutPlayer, { ExerciseState } from './workout.player';
 
 
 export {
@@ -27,10 +27,10 @@ export {
     WorkoutExercise,
     WorkoutTimer,
     Workout,
-    WorkoutPlayer,
+    // WorkoutPlayer,
     WorkoutSet,
     Timings,
-    ExerciseState,
+    // ExerciseState,
     Section,
     Components
 }
