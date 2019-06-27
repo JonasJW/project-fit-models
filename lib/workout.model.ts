@@ -46,6 +46,7 @@ export class Workout {
         } else {
             this.isTest = false;
         }
+        console.log('isTest', this.isTest);
 
         if (this.isTest == true) {
             this.exercises = routine.exercises.map((routineExercise) => {

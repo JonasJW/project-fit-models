@@ -1,3 +1,5 @@
+import { CategorieItem } from "./index";
+
 export class Programm {
     id: string;
     name: string;
@@ -5,7 +7,7 @@ export class Programm {
     thumbnailUrl: string;
 
     sections: Section[];
-    components: any; // TODO: 
+    components: Components[];
 }
 
 export class Section {
@@ -19,7 +21,9 @@ export class Section {
 
 export class Components {
     id: string;
+    heading: string;
     type: string;
     isPreview: boolean;
+    items: CategorieItem[]
 }
 
