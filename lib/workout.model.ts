@@ -39,9 +39,14 @@ export class Workout {
         this.isCircuit = routine.isCircuit;
         this.circuitRounds = routine.circuitRounds;
         this.status = status;
-
-        
         this.exercises = [];
+
+        if (routine.maxRepTest && status && status.isFirst) {
+            this.isTest = true;
+        } else {
+            this.isTest = false;
+        }
+
         if (this.isTest == true) {
             this.exercises = routine.exercises.map((routineExercise) => {
                 const exercise = JSON.parse(JSON.stringify(routineExercise)) as WorkoutExercise;
@@ -73,11 +78,6 @@ export class Workout {
             })
         }
 
-        if (routine.maxRepTest && status && status.isFirst) {
-            this.isTest = true;
-        } else {
-            this.isTest = false;
-        }
         this.updateRoutineWithRoutineStatus(status)
     }
 

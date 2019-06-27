@@ -5,6 +5,7 @@ export class Programm {
     thumbnailUrl: string;
 
     sections: Section[];
+    components: any; // TODO: 
 }
 
 export class Section {
