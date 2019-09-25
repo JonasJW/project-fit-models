@@ -1,9 +1,11 @@
+import { CategorieItem } from "./index";
 export declare class Programm {
     id: string;
     name: string;
     description: string;
     thumbnailUrl: string;
     sections: Section[];
+    components: Components[];
 }
 export declare class Section {
     id: string;
@@ -15,6 +17,8 @@ export declare class Section {
 }
 export declare class Components {
     id: string;
+    heading: string;
     type: string;
     isPreview: boolean;
+    items: CategorieItem[];
 }

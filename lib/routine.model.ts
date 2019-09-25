@@ -1,4 +1,5 @@
 import { RoutineExercise } from './routine-exercise.model';
+import { ContentItem } from './index';
 
 export class Routine {
     id: string;
@@ -17,6 +18,12 @@ export class Routine {
     programmId: string;
 
     exercises: RoutineExercise[];
+    warmup: {
+        name: string,
+        resource: string,
+        duration: number
+    }[];
+    items: ContentItem[];
 
     constructor() {
         this.exercises = [];

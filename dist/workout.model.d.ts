@@ -9,12 +9,20 @@ export declare class Workout {
     isCircuit: boolean;
     isTest: boolean;
     circuitRounds: number;
+    hasWarmup: boolean;
     routineId: string;
     routineName: string;
+    programmId: string;
+    programmName: string;
     finishedAt: number;
     startedAt: number;
     entryKeys: string[];
     exercises: WorkoutExercise[];
+    warumup: {
+        name: string;
+        resource: string;
+        duration: number;
+    }[];
     currentExercise: number;
     selectedExercise: number;
     currentCircuitRound: number;

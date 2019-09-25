@@ -31,6 +31,8 @@ export class Exercise {
     
     routineId: string;
     routineName: string;
+
+    progressionsResources: {};
     
     
     // exclude

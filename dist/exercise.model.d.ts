@@ -25,6 +25,7 @@ export declare class Exercise {
     repRangeTimeline: string[];
     routineId: string;
     routineName: string;
+    progressionsResources: {};
     maxRepsSet: WorkoutSet;
     preset: Preset;
 }

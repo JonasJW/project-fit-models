@@ -12,9 +12,11 @@ export class Workout {
     isCircuit: boolean;
     isTest: boolean;
     circuitRounds: number;
-
+    hasWarmup: boolean;
     routineId: string;
     routineName: string;
+    programmId: string;
+    programmName: string;
 
     finishedAt: number;
     startedAt: number;
@@ -23,6 +25,11 @@ export class Workout {
 
     // Excluded from db:
     exercises: WorkoutExercise[];
+    warumup: {
+        name: string,
+        resource: string,
+        duration: number
+    }[];
     currentExercise = 0;
     selectedExercise = 0;
     currentCircuitRound = 0;
@@ -31,22 +38,31 @@ export class Workout {
 
     constructor(routine: Routine, status: RoutineStatus) {
         const now = new Date();
-        const date = `${now.getMonth() >= 10 ? now.getMonth() : '0' + now.getMonth()}-${now.getDate() >= 10 ? now.getDate() : '0' + now.getDate()}-${now.getFullYear()}`
+        const date = `${(now.getMonth() + 1) >= 10 ? (now.getMonth() + 1) : '0' + (now.getMonth() + 1)}-${now.getDate() >= 10 ? now.getDate() : '0' + now.getDate()}-${now.getFullYear()}`
         this.name = routine.name + ' ' + date,
         this.routineName = routine.name;
         this.routineId = routine.id;
+        this.programmId = routine.programmId;
+        this.programmName = routine.programmName;
         this.startedAt = new Date().getTime();
         this.isCircuit = routine.isCircuit;
         this.circuitRounds = routine.circuitRounds;
         this.status = status;
         this.exercises = [];
+        if (routine.warmup != null && routine.warmup.length > 0) {
+            this.warumup = routine.warmup;
+            this.hasWarmup = true;
+            this.selectedExercise = -1;
+            this.currentExercise = -1;
+        } else {
+            this.hasWarmup = false;
+        }
 
         if (routine.maxRepTest && status && status.isFirst) {
             this.isTest = true;
         } else {
             this.isTest = false;
         }
-        console.log('isTest', this.isTest);
 
         if (this.isTest == true) {
             this.exercises = routine.exercises.map((routineExercise) => {
@@ -68,7 +84,8 @@ export class Workout {
                 exercise.currentSet = 0;
                 exercise.sets = [];
                 for (let i = 0; i < (routine.isCircuit ? routine.circuitRounds : routineExercise.sets); i++) {
-                    if (!routineExercise.preset.isBilateral) {
+                    if (!routineExercise.preset) { console.log('preset not found', routineExercise.presetKey) }
+                    if (routineExercise.preset && !routineExercise.preset.isBilateral) {
                         exercise.sets.push(new WorkoutSet());
                     } else {
                         exercise.sets.push(new WorkoutSet(true));
