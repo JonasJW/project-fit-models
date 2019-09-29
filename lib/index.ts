@@ -11,6 +11,8 @@ export { Tutor } from './tutor.model';
 import { WorkoutExercise, WorkoutSet } from './workout-exercise.model';
 import WorkoutTimer from './workout-timer';
 import { Workout } from './workout.model';
+import ExerciseStatusEntry from './exercise-status-entry.model';
+import ProgressionStatusEntry from './progressiom-status-entry.model';
 
 export {
     CategorieItem,
@@ -28,6 +30,8 @@ export {
     WorkoutSet,
     Timings,
     Section,
-    Components
+    Components,
+    ExerciseStatusEntry,
+    ProgressionStatusEntry
 }
 

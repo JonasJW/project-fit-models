@@ -6,11 +6,11 @@ export class WorkoutExercise extends Exercise {
 
     // exclude
     currentSet = 0;
-    recentExercise: WorkoutExercise;
+    // recentExercise: WorkoutExercise;
 
     constructor(routineExercise: RoutineExercise, setCount: number) {
         super();
-        this.presetKey = routineExercise.presetKey;
+        // this.presetKey = routineExercise.presetKey;
     }
 }
 

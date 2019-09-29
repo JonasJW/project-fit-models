@@ -1,6 +1,7 @@
 import { WorkoutSet } from "./workout-exercise.model";
 export class Workout {
-    constructor(routine, status) {
+    // status: RoutineStatus;
+    constructor(routine) {
         this.currentExercise = 0;
         this.selectedExercise = 0;
         this.currentCircuitRound = 0;
@@ -14,7 +15,7 @@ export class Workout {
         this.startedAt = new Date().getTime();
         this.isCircuit = routine.isCircuit;
         this.circuitRounds = routine.circuitRounds;
-        this.status = status;
+        // this.status = status;
         this.exercises = [];
         if (routine.warmup != null && routine.warmup.length > 0) {
             this.warumup = routine.warmup;
@@ -25,63 +26,47 @@ export class Workout {
         else {
             this.hasWarmup = false;
         }
-        if (routine.maxRepTest && status && status.isFirst) {
-            this.isTest = true;
-        }
-        else {
-            this.isTest = false;
-        }
-        if (this.isTest == true) {
-            this.exercises = routine.exercises.map((routineExercise) => {
-                const exercise = JSON.parse(JSON.stringify(routineExercise));
-                if (!exercise.progression) {
-                    exercise.progression = null; // ensures object has progression key, so select will have Defaul Prog as default
-                }
-                exercise.currentSet = 0;
-                exercise.sets = [new WorkoutSet()];
-                return exercise;
-            });
-        }
-        else {
-            routine.exercises.forEach((routineExercise) => {
-                const exercise = JSON.parse(JSON.stringify(routineExercise));
-                if (!exercise.progression) {
-                    exercise.progression = null; // ensures object has progression key, so select will have Defaul Prog as default
-                }
-                exercise.currentSet = 0;
-                exercise.sets = [];
-                for (let i = 0; i < (routine.isCircuit ? routine.circuitRounds : routineExercise.sets); i++) {
-                    if (!routineExercise.preset) {
-                        console.log('preset not found', routineExercise.presetKey);
+        // if (routine.maxRepTest && status && status.isFirst) {
+        //     this.isTest = true;
+        // } else {
+        //     this.isTest = false;
+        // }
+        // if (this.isTest == true) {
+        //     this.exercises = routine.exercises.map((routineExercise) => {
+        //         const exercise = JSON.parse(JSON.stringify(routineExercise)) as WorkoutExercise;
+        //         if (!exercise.progression) {
+        //             exercise.progression = null; // ensures object has progression key, so select will have Defaul Prog as default
+        //         }
+        //         exercise.currentSet = 0;
+        //         exercise.sets = [new WorkoutSet()];
+        //         return exercise;
+        //     })
+        // } else {
+        routine.exercises.forEach((routineExercise) => {
+            const exercise = JSON.parse(JSON.stringify(routineExercise));
+            // if (!exercise.progression) {
+            //     exercise.progression = null; // ensures object has progression key, so select will have Defaul Prog as default
+            // }
+            exercise.currentSet = 0;
+            exercise.sets = [];
+            for (let i = 0; i < (routine.isCircuit ? routine.circuitRounds : routineExercise.sets); i++) {
+                // if (!routineExercise.preset) { console.log('preset not found', routineExercise.presetKey) }
+                if (routineExercise.progressions[routineExercise.selectedProgression] && routineExercise.progressions[routineExercise.selectedProgression].isBilateral == false) {
+                    const _set = new WorkoutSet();
+                    if (routineExercise.statusEntry != null && routineExercise.statusEntry.progressionEntries != null && routineExercise.progressions[routineExercise.selectedProgression] != null) {
+                        _set.weight = routineExercise.statusEntry.progressionEntries[routineExercise.progressions[routineExercise.selectedProgression].id].sets[i].weight;
                     }
-                    if (routineExercise.preset && !routineExercise.preset.isBilateral) {
-                        exercise.sets.push(new WorkoutSet());
-                    }
-                    else {
-                        exercise.sets.push(new WorkoutSet(true));
-                        exercise.sets.push(new WorkoutSet(false));
-                    }
+                    exercise.sets.push(new WorkoutSet());
                 }
-                this.exercises.push(exercise);
-            });
-        }
-        this.updateRoutineWithRoutineStatus(status);
-    }
-    updateRoutineWithRoutineStatus(status) {
-        if (!status || !status.bestMaxReps) {
-            return;
-        }
-        for (let i = 0; i < this.exercises.length; i++) {
-            if (status.bestMaxReps.length > 1) { // If there is a bestMaxRep entry for exercise
-                if (this.exercises[i].presetKey === status.bestMaxReps[i].presetKey) { // verify its the same preset (Prob unnessecary) 
-                    this.exercises[i].progression = status.bestMaxReps[i].progression;
-                    this.exercises[i].isWeighted = status.bestMaxReps[i].isWeighted;
-                    this.exercises[i].sets.forEach((set) => {
-                        set.weight = status.bestMaxReps[i].sets[0].weight;
-                    });
-                    this.exercises[i].maxRepsSet = status.bestMaxReps[i].sets[0];
+                else {
+                    // TODO: Apply statusEntry like above
+                    exercise.sets.push(new WorkoutSet(true));
+                    exercise.sets.push(new WorkoutSet(false));
                 }
             }
-        }
+            this.exercises.push(exercise);
+        });
+        // }
+        // this.updateRoutineWithRoutineStatus(status)
     }
 }

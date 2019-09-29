@@ -1,5 +1,5 @@
-import { Preset } from "./preset.model";
-import { WorkoutSet } from "./workout-exercise.model";
+import Progression from "./progression.model";
+import { ExerciseStatusEntry } from "./index";
 export declare class Timings {
     holdDown: number;
     positives: number;
@@ -10,22 +10,14 @@ export declare class Timings {
 }
 export declare class Exercise {
     id: string;
-    presetKey: string;
-    progression: string;
+    name: string;
     tutorKey: string;
-    previewUrl: string;
-    timings: Timings;
-    isWeighted: boolean;
     isCircuit: boolean;
     isSupersetParent: boolean;
     isSupersetChild: boolean;
-    intensitiy: number;
-    generalSetGoal: number;
-    repRange: string;
-    repRangeTimeline: string[];
     routineId: string;
     routineName: string;
-    progressionsResources: {};
-    maxRepsSet: WorkoutSet;
-    preset: Preset;
+    progressions: Progression[];
+    selectedProgression: number;
+    statusEntry: ExerciseStatusEntry;
 }

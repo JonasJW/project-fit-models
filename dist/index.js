@@ -11,4 +11,6 @@ export { Tutor } from './tutor.model';
 import { WorkoutExercise, WorkoutSet } from './workout-exercise.model';
 import WorkoutTimer from './workout-timer';
 import { Workout } from './workout.model';
-export { CategorieItem, ContentItem, Routine, Exercise, NewsItem, Preset, Programm, RoutineExercise, RoutineStatus, WorkoutExercise, WorkoutTimer, Workout, WorkoutSet, Timings, Section, Components };
+import ExerciseStatusEntry from './exercise-status-entry.model';
+import ProgressionStatusEntry from './progressiom-status-entry.model';
+export { CategorieItem, ContentItem, Routine, Exercise, NewsItem, Preset, Programm, RoutineExercise, RoutineStatus, WorkoutExercise, WorkoutTimer, Workout, WorkoutSet, Timings, Section, Components, ExerciseStatusEntry, ProgressionStatusEntry };

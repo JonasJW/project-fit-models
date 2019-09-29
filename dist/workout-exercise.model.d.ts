@@ -3,7 +3,6 @@ import { RoutineExercise } from "./routine-exercise.model";
 export declare class WorkoutExercise extends Exercise {
     sets: WorkoutSet[];
     currentSet: number;
-    recentExercise: WorkoutExercise;
     constructor(routineExercise: RoutineExercise, setCount: number);
 }
 export declare class WorkoutSet {

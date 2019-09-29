@@ -1,5 +1,7 @@
 import { Preset } from "./preset.model";
 import { WorkoutSet } from "./workout-exercise.model";
+import Progression from "./progression.model";
+import { ExerciseStatusEntry } from "./index";
 
 export class Timings {
     holdDown: number;
@@ -13,29 +15,31 @@ export class Timings {
 export class Exercise {
 
     id: string;
-    presetKey: string;
-    progression: string;
+    name: string;
     tutorKey: string;
-    previewUrl: string;
-    timings: Timings;
-    isWeighted: boolean;
     isCircuit: boolean;
-
     isSupersetParent: boolean;
     isSupersetChild: boolean;
-
-    intensitiy: number;
-    generalSetGoal: number; // ?
-    repRange: string;
-    repRangeTimeline: string[]
-    
     routineId: string;
     routineName: string;
+    progressions: Progression[];
+    selectedProgression: number;
 
-    progressionsResources: {};
-    
-    
-    // exclude
-    maxRepsSet: WorkoutSet;
-    preset: Preset;
+    //exclude
+    statusEntry: ExerciseStatusEntry;
+
+    //Depricated
+    // presetKey: string;
+    // progression: string;
+    // previewUrl: string;
+    // timings: Timings;
+    // isWeighted: boolean;
+    // intensitiy: number;
+    // generalSetGoal: number; // ?
+    // repRange: string;
+    // repRangeTimeline: string[]
+    // progressionsResources: {};
+    // // exclude
+    // maxRepsSet: WorkoutSet;
+    // preset: Preset;
 }
